@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import API from '../../config';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,12 +11,14 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
   }
 
   search (term) {
-    console.log(`${term} was searched`);
-    // TODO
+    $.ajax(`http://localhost:1128/repos`, {
+      type: 'POST',
+      contentType: 'application/JSON',
+      data: JSON.stringify({term: term})
+    });
   }
 
   render () {
