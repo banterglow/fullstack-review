@@ -22,7 +22,16 @@ class App extends React.Component {
         self.setState({
           repos: result
         })
+      },
+      error: function(e) {
+        if (e.responseText.includes('validation')) {
+          alert(`User ${term} was previously added to the database. No repositories have been added to the database.`)
+        } else {
+          alert(`User ${term} was not found in Github. No repositories have been added to the database.`);
+        }
+        
       }
+      
     });
   }
 

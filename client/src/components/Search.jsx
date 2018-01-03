@@ -16,15 +16,22 @@ class Search extends React.Component {
     });
   }
 
-  search() {
+  search(e) {
+    e.preventDefault();
     this.props.onSearch(this.state.term);
+    this.setState({
+      term: ''
+    });
   }
 
   render() {
     return (<div>
       <h4>Add more repos!</h4>
-      Enter a github username: <input value={this.state.term} onChange={this.onChange}/>       
-      <button onClick={this.search}> Add Repos </button>
+      Enter a github username: 
+      <form className="search-form" onSubmit={this.search}> 
+        <input type="text" value={this.state.term} onChange={this.onChange} />
+        <button type="submit" onClick={this.search}> Add Repos </button>
+      </form>
     </div>) 
   }
 }
