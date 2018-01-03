@@ -13,7 +13,7 @@ app.post('/repos', function (req, res) {
   github.getReposByUsername(req.body.term)
     .then(db.save)
     .then(() => {
-      res.writeHead(302, { 'Location': 'http://localhost:1128/repos'});
+      res.writeHead(302, { 'Location': '/repos'});
       res.end();
     })
     .catch((e) => {
