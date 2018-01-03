@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
-import API from '../../config';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,18 +13,24 @@ class App extends React.Component {
   }
 
   search (term) {
+    let self = this;
     $.ajax(`http://localhost:1128/repos`, {
       type: 'POST',
       contentType: 'application/JSON',
-      data: JSON.stringify({term: term})
+      data: JSON.stringify({term: term}),
+      success: function(result) {
+        self.setState({
+          repos: result
+        })
+      }
     });
   }
 
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
+      <RepoList repos={this.state.repos} />
     </div>)
   }
 }
