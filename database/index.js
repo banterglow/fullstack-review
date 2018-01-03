@@ -24,13 +24,15 @@ db.once('open', function() {
     stargazerCount: Number // stargazers_count
   });
 
+  // middleware. validates that all new inserts are unique. If not, inserts none.
   repoSchema.plugin(uniqueValidator);
 
   let Repo = mongoose.model('Repo', repoSchema);
 
   let save = (rawRepoData) => {
+    //takes rawRepoData from API and parses it into format for database
     let formattedRepos = rawRepoData.map(function (repo) {
-      return { //attribute location on api resp
+      return {
         owner: {
           username: repo.owner.login,
           userId: repo.owner.id,
@@ -46,6 +48,7 @@ db.once('open', function() {
         stargazerCount: repo.stargazers_count
       }
     });
+    // returns a promise
     return Repo.insertMany(formattedRepos);
   }
 

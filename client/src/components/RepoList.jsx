@@ -3,8 +3,8 @@ let moment = require('moment');
 
 const RepoList = (props) => (
   <div>
-    <h4> Repo List Component </h4>
-    There are {props.repos.length} repos.
+    <h4> Repo List Component <br/> There are {props.repos.length} repos.</h4>
+    
     <table>
       <thead>
         <tr>
@@ -20,7 +20,7 @@ const RepoList = (props) => (
             <tr>
               <td><a href={repo.htmlUrl}>{repo.repoName}</a></td>
               <td>{repo.stargazerCount}</td>
-              <td>{repo.owner.username}</td>
+              <td><img src={repo.owner.avatarUrl} /> {repo.owner.username}</td>
               <td>{moment(repo.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
             </tr>
           </tbody>
