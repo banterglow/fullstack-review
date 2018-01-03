@@ -13,7 +13,7 @@ let getReposByUsername = (username) => {
   return request(options)
     .then(JSON.parse)
     .then(function(repos) {
-      console.log(`repos obtained! Number:`, repos.length);
+      console.log(`Repos obtained! Total number:`, repos.length);
       return repos;
     })
 }

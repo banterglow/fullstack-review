@@ -10,13 +10,15 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.post('/repos', function (req, res) {
-  console.log('request body', req.body);
   github.getReposByUsername(req.body.term)
     .then(db.save)
-    .then(() => res.writeHead(302, { 'Location': 'http://localhost:1128/repos'}).end())
+    .then(() => {
+      res.writeHead(302, { 'Location': 'http://localhost:1128/repos'});
+      res.end();
+    })
     .catch((e) => {
-      console.log('Error! Either blank field or duplicates found');
-      res.status(400).end(); //handle ValidationError(from duplicate entries) and api get error differently
+      console.log(`Repos not added - Type: ${e.name} Message: ${e.message}`);
+      res.status(400).end(e.message); //handle ValidationError(from duplicate entries) and api get error differently
     });
 });
 
