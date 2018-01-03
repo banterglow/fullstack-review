@@ -14,7 +14,7 @@ class App extends React.Component {
 
   search (term) {
     let self = this;
-    $.ajax(`http://localhost:1128/repos`, {
+    $.ajax(`/repos`, {
       type: 'POST',
       contentType: 'application/JSON',
       data: JSON.stringify({term: term}),
@@ -37,7 +37,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let self=this;
-    $.ajax(`http://localhost:1128/repos`, {
+    $.ajax(`/repos`, {
       type: 'GET',
       success: function (result) {
         self.setState({
