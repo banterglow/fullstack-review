@@ -23,7 +23,6 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   db.pullTopResults()
     .then((results) => {
-      console.log('top 25 here!!!!', results);
       res.json(results);
     })
 });

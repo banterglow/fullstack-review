@@ -50,7 +50,7 @@ db.once('open', function() {
   }
 
   let pullTopResults = () => {
-    return Repo.find({}, 'repoName stargazerCount', {limit: 25, sort: {'stargazerCount': -1}});
+    return Repo.find({}, 'repoName stargazerCount htmlUrl updatedAt owner.username owner.avatarUrl', {limit: 25, sort: {'stargazerCount': -1}});
   }
 
   module.exports.save = save;

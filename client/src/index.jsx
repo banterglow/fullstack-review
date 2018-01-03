@@ -26,6 +26,18 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    let self=this;
+    $.ajax(`http://localhost:1128/repos`, {
+      type: 'GET',
+      success: function (result) {
+        self.setState({
+          repos: result
+        })
+      }
+    });
+  }
+
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
