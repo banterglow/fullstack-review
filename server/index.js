@@ -7,7 +7,7 @@ let db = require('../database/index');
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static('/client/dist'));
 
 app.post('/repos', function (req, res) {
   github.getReposByUsername(req.body.term)
