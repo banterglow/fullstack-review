@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect(MONGODB_URI);
 
 var db = mongoose.connection;
 
