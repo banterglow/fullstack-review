@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const config = require(__dirname + '../config.js');
+const config = require('../config.js');
 
 let getReposByUsername = (username) => {
   let options = {
